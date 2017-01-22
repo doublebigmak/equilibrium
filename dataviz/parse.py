@@ -39,3 +39,6 @@ def main():
     new_data = parse(MY_FILE, ",")
 
     print(new_data)
+
+if __name__ == "__main__":
+    main()
