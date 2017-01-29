@@ -5,6 +5,7 @@
 
 import matplotlib.pyplot as plt
 import parse
+import numpy as np
 from collections import Counter
 
 
@@ -38,10 +39,46 @@ def visualize_days():
     # save plot
     plt.savefig("Days.png")
     #close plot file
-    plt.clg()
+    plt.clf()
 
+def visualize_type():
+    """Visualize data by category in a bar graph"""
+
+    # grab parsed data
+    data_file = parse.parse(MY_FILE,",")
+    # make a new variable, 'counter', from iterating through each line
+    # of data in parsed data, and count how many incidents happen
+    # by category
+    counter = Counter(item["Category"]for item in data_file)
+
+    # set labels which are based on keys of our counter
+    # since order doesn't matter, can use counter.keys()
+    labels = tuple(counter.keys())
+
+    # Set exactly where labels hit x-axis
+    xlocations = np.arange(len(labels))+0.5
+    width = 0.5
+
+    # assign data to a bar plot (similar to plt.plot())
+    plt.bar(xlocations,counter.values(),width=width)
+
+    # Assign labels and tick location to x-axis
+    plt.xticks(xlocations+width/2,labels,rotation = 90)
+
+    # Give some more room so the x-axis labels aren't cut off in graph
+    plt.subplots_adjust(bottom=0.4)
+
+    # Make the overall graph/figure larger
+    plt.rcParams['figure.figsize'] = 12,8
+
+    # Save the gprah
+    plt.savefig("Type.png")
+
+    # Close plot figure
+    plt.clf()
 def main():
-    visualize_days()
+    #visualize_days()
+    visualize_type()
 
 if __name__=="__main__":
     main()
