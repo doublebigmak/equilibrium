@@ -5,7 +5,7 @@
 #alarm ??
 import time
 
-usertime = input("Input Time >")
+usertime = input("Input Time > ")
 struct_time = time.strptime(usertime,"%H:%M:%S")
 #calculate difference between input time and current time
 
@@ -21,8 +21,8 @@ while(trigger):
         print("Ding Ding, Alarm triggered!")
         trigger = 0
     else:
-        time.sleep(60)
-
+        time.sleep(1)
+        print("Tick")
 
 
     #do function
