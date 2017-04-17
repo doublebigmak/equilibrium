@@ -12,7 +12,7 @@ from ship import Ship
 import game_functions as gf
 from pygame.sprite import Group
 from game_stats import GameStats
-
+from button import Button
 
 
 def run_game():
@@ -22,13 +22,17 @@ def run_game():
     screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
     pygame.display.set_caption("Alien Invasion")
 
+    # Make play button
+    play_button = Button(ai_settings, screen, "Play")
+
     # Make a ship
     ship = Ship(ai_settings, screen)
     # Make a group to store bullets in
     bullets = Group()
     aliens = Group()
     gf.create_fleet(ai_settings,screen,ship, aliens)
-    #Create an instance to store game statistics
+
+    # Create an instance to store game statistics
     stats = GameStats(ai_settings)
 
     # Start main loop
@@ -41,7 +45,7 @@ def run_game():
             gf.update_aliens(ai_settings,stats,screen,ship, aliens, bullets)
             # Redraw screen during each pass through loop
 
-            gf.update_screen(ai_settings, screen, ship,aliens,bullets)
+        gf.update_screen(ai_settings, screen, stats, ship,aliens,bullets,play_button)
 
 
 
