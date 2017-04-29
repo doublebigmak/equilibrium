@@ -4,11 +4,12 @@
 # TIME: 21/03/2017
 
 import pygame
+from pygame.sprite import Sprite
 
-
-class Ship():
+class Ship(Sprite):
     def __init__(self, ai_settings, screen):
         """Initialize ship and set starting position"""
+        super(Ship,self).__init__()
         self.screen = screen
 
         # Load ship image and get its rect
